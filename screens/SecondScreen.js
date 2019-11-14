@@ -3,25 +3,34 @@ import { View, Text , Button} from 'react-native';
 
 class SecondScreen extends Component {
   
-    state = {};
+  state = {
+    tareasArray:[],
+    tareaNueva:{ nombre: ""},
+    quirofanoClicado:this.props.clicada
+  }
   
+  componentDidMount() {
+    let q = this.props.navigation.getParam('ElQuirofano')
+    alert (q)
+  }
   
   render() {
-    const usuario = this.props.navigation.getParam('nombres')
-    const pressHello = this.props.navigation.getParam('sayHello')
+    //const usuario = this.props.navigation.getParam('nombres')
+    //const pressHello = this.props.navigation.getParam('sayHello')
+    //const quirofano = this.props.navigation.getParam(quirofano)
+    //alert(quirofano)
+   // const { navigate } = this.props.navigation
     
     return (
       <View>
-        <Text> {usuario[1].nombre} </Text>
+        <Text> G </Text>
         <Button 
           title="Go back to  Home"
           onPress={
             () => {
               this.props.navigation.navigate("Home");
-              pressHello("Hello!")
+              //pressHello("Hello!")
               }
-           //()=>  this.props.navigation.navigate( 'Home' ) , passHello("Hello!")
-           
           }
         />
       </View>
