@@ -5,7 +5,7 @@ import {Text, View , TouchableOpacity,StyleSheet, Image} from 'react-native';
 const Quirofano = ({quirofano,eliminarQuirofano,quirofanoClicado,navigation}) => {
 
     const {navigate} = navigation
-    const {ElQuirofano} = quirofano
+    
 
     const eliminar = () =>{
         eliminarQuirofano(quirofano.id)
@@ -13,7 +13,7 @@ const Quirofano = ({quirofano,eliminarQuirofano,quirofanoClicado,navigation}) =>
 
     const handleClick = () => {
         quirofanoClicado(quirofano); //devolver callback a App
-        navigate("SecondScreen", ElQuirofano, quirofanoClicado);
+        navigate("SecondScreen", {quirofano: quirofano, quirofanoClicado:quirofanoClicado});
     }
 
   /*  <Button 

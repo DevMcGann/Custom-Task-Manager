@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Text, View, TouchableOpacity } from 'react-native';
+import {  Text, View, TouchableOpacity,Button } from 'react-native';
 
 const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
 
@@ -20,15 +20,19 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
     return (  
         <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" }}>
                 <Text> {tarea.nombre}</Text>
-                <View >
+                <View>
                     
                     {tarea.completa ? 
-                    (<TouchableOpacity> <Text onPress={cambiarEstado}> Completa </Text> </TouchableOpacity>)
+                    (<TouchableOpacity onPress={cambiarEstado}>
+                         <Text> Completa</Text>
+                    </TouchableOpacity>)
                      : 
-                     (<TouchableOpacity> <Text onPress={cambiarEstado}> Incompleta </Text> </TouchableOpacity>)
+                     (<TouchableOpacity onPress={cambiarEstado}> 
+                         <Text> Incompleta</Text> 
+                     </TouchableOpacity>)
                     }
 
-                    <i className="fas fa-trash" onPress={clickEliminar}></i>
+                    <Button onPress={clickEliminar} title="Eliminar"/>  
                 </View>
                            
         </View>

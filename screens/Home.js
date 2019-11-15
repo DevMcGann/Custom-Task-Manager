@@ -11,36 +11,29 @@ class Home extends Component {
     clicada: {}
    }
 
-
-    sayHello = (data) => {
-      alert(data)
-    }
-
-    async componentDidMount() {
+   /////////////////////////////////ASYNCSTORAGE////////////////////////// 
+   async componentDidMount() {
       try {
         let datos = await AsyncStorage.getItem('QUIROFANOS')
         if (datos){
-          //alert(datos)
           this.setState({quirofanos:JSON.parse(datos)})
         }
       } catch (error) {
         console.log(error)
       }
-     
-     this.props.navigation.setParams({ saludar: this.saludar });
     }
-
-
-    async componentDidUpdate(){
-      try {
-        if (this.state.quirofanos.length > 0){
-          await AsyncStorage.setItem('QUIROFANOS', JSON.stringify(this.state.quirofanos))
+       async componentDidUpdate() {
+        try {
+          if (this.state.quirofanos.length > 0){
+           await  AsyncStorage.setItem('QUIROFANOS', JSON.stringify(this.state.quirofanos))
+          }
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
       }
-    }
-
+     
+ ///////////////////////////////////////////////////////////////////     
+     
     salvarDatos = async (datos) => {
       try {
         await AsyncStorage.setItem('QUIROFANOS', JSON.stringify(datos))
