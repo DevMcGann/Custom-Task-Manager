@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text , Button, TouchableOpacity,TextInput} from 'react-native';
+import { View, Text , Button, TouchableOpacity,TextInput,StyleSheet} from 'react-native';
+import { AsyncStorage } from 'react-native';
 import uuid from 'uuid';
 import Tarea from '../componentes/Tarea';
 
@@ -14,6 +15,7 @@ class SecondScreen extends Component {
   /////////////////// ASYNCSTORAGE /////////////////////
   async componentDidMount() {
     try {
+      
       let datos = await AsyncStorage.getItem('TAREAS')
       if (datos){
         this.setState({tareasArray:JSON.parse(datos)})
@@ -37,7 +39,7 @@ class SecondScreen extends Component {
 salvarDatos = async (datos) => {
   try {
     await AsyncStorage.setItem('TAREAS', JSON.stringify(datos))
-
+    //alert("salvar datos" + JSON.stringify(datos))
   } catch (error) {
     console.log(error)
   }
@@ -55,7 +57,7 @@ handleSubmit = e => {
   
   this.salvarDatos(tarea)
   this.setState({tareasArray:[...this.state.tareasArray, tarea]})   
-  alert(JSON.stringify(this.state.tareasArray))
+ // alert(JSON.stringify(this.state.tareasArray))
 }
 
 handleChange = nombre => {
@@ -92,15 +94,8 @@ cambiarEstadoTarea = (tarea,index) => {
 }
 
 
-
-
-////////////////////////////////////////////////RENDER//////////////////////////////
-  render() {    
-    return (
-      <View>
-          <View>
-            <Text> {this.state.quirofanoClicado.nombre} </Text>
-            <Button 
+/*
+<Button 
               title="Volver a Quirófanos"
               onPress={
                 () => {
@@ -109,20 +104,30 @@ cambiarEstadoTarea = (tarea,index) => {
                   }
               }
             />
+*/ 
+
+////////////////////////////////////////////////RENDER//////////////////////////////
+  render() {    
+    return (
+      <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={{color:'white', fontSize:35, flex:1, marginBottom:6}}> {this.state.quirofanoClicado.nombre} </Text>
+            <TouchableOpacity onPress={this.todasIncompletas}><Text style={{marginBottom:12, color:'white'}}> Marcar todas Incompletas</Text></TouchableOpacity>
           </View>
 
-          <View>
+          <View style={styles.formulario}>
             <TextInput type="text" placeholder="Nueva Tarea" 
               onChangeText={(nombre) => this.handleChange(nombre)} required
               value={this.state.tareaNueva.nombre}
               name="nombre"
+              style={styles.input}
             />
-            <Button onPress={this.handleSubmit} title="Agregar Tarea"/>  
-            <TouchableOpacity onPress={this.todasIncompletas}><Text> Marcar todas Incompletas</Text></TouchableOpacity>
+            <Button onPress={this.handleSubmit} title="Agregar Tarea" style={styles.btnAgregar}/>  
+            
           </View>
 
             {!this.state.tareasArray.length ? (<Text>No hay tareas</Text>) : (
-                  <View>    
+                  <View style={styles.tareas}>     
                       {this.state.tareasArray.map((tarea,index) => tarea.idQuirofano === this.state.quirofanoClicado.id ? (
                           <Tarea 
                               key={index}
@@ -146,3 +151,66 @@ cambiarEstadoTarea = (tarea,index) => {
 }
 
 export default SecondScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+
+  header: {
+    backgroundColor:"green",
+    flex:.6,
+    justifyContent:'flex-start',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+
+  },
+//////////////////////////formulario
+  formulario:{
+    flex: .3,
+    flexDirection:'row',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent:'space-between',
+    backgroundColor:'white'
+
+  },
+
+  //formulario -> input + boton
+  input:{
+    backgroundColor:'orange',
+    flex:2,
+    marginLeft:8,
+    marginRight:8,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent:'center',
+    textAlign:'center',
+    color:'white',
+    fontSize:25,
+    fontStyle:'italic'
+
+  },
+
+  btnAgregar:{
+    flex:1,
+    margin:10,
+    padding:8
+  },
+
+/////////////////////////////////////////////
+
+  tareas:{
+    flex:2,
+    alignSelf: 'stretch',
+    justifyContent:'flex-start',
+    padding:15,
+    backgroundColor:'yellow'
+  }
+
+ 
+});

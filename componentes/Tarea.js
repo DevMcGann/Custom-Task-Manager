@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Text, View, TouchableOpacity,Button } from 'react-native';
+import {  Text, View, TouchableOpacity,Button,StyleSheet } from 'react-native';
 
 const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
 
