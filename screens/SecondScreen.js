@@ -94,18 +94,6 @@ cambiarEstadoTarea = (tarea,index) => {
 }
 
 
-/*
-<Button 
-              title="Volver a Quirófanos"
-              onPress={
-                () => {
-                  this.props.navigation.navigate("Home");
-                  //pressHello("Hello!")
-                  }
-              }
-            />
-*/ 
-
 ////////////////////////////////////////////////RENDER//////////////////////////////
   render() {    
     return (

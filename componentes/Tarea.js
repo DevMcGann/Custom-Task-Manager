@@ -18,10 +18,10 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
     }
 
     return (  
-        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" }}>
+        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" , flex:1, justifyContent:'flex-start' }}>
                 <Text> {tarea.nombre}</Text>
-                <View>
-                    
+
+                <View style={styles.container}>    
                     {tarea.completa ? 
                     (<TouchableOpacity onPress={cambiarEstado}>
                          <Text> Completa</Text>
@@ -40,3 +40,18 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
 }
  
 export default Tarea;
+
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection:'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      
+    },
+  
+ 
+   
+  });
