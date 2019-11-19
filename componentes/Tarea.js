@@ -1,5 +1,6 @@
 import React from 'react'
-import {  Text, View, TouchableOpacity,Button,StyleSheet } from 'react-native';
+import {  Text, View,Button,StyleSheet } from 'react-native';
+// { ScrollView } from 'react-native-gesture-handler';
 
 const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
 
@@ -18,24 +19,28 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
     }
 
     return (  
-        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" , flex:1, justifyContent:'flex-start' }}>
-                <Text> {tarea.nombre}</Text>
 
-                <View style={styles.container}>    
+      
+        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" , flex:1,  justifyContent:'space-between', marginBottom:15, alignItems:'stretch' }}>
+                
+                <View style={{flex:.5}}>
+                   <Text style={{textAlign:'center', marginBottom:16, marginTop:8, color:'white', fontWeight:'bold'}}> {tarea.nombre}</Text>
+                </View>
+
+
+                <View style={styles.containerBotones}>    
                     {tarea.completa ? 
-                    (<TouchableOpacity onPress={cambiarEstado}>
-                         <Text> Completa</Text>
-                    </TouchableOpacity>)
+                    (<Button title="Completa" onPress={cambiarEstado} style={{marginTop: 15}}/>)
                      : 
-                     (<TouchableOpacity onPress={cambiarEstado}> 
-                         <Text> Incompleta</Text> 
-                     </TouchableOpacity>)
+                     (<Button title="Incompleta" onPress={cambiarEstado} style={{marginTop: 15}}/>)
                     }
 
                     <Button onPress={clickEliminar} title="Eliminar"/>  
                 </View>
                            
         </View>
+    
+
     );
 }
  
@@ -44,14 +49,15 @@ export default Tarea;
 
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
+    
+    containerBotones: {
+      flex:.3,
       flexDirection:'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: 'flex-end',
+      //backgroundColor:'orange',
+      justifyContent: 'space-evenly',
+      
+      
       
     },
-  
- 
-   
   });

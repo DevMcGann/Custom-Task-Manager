@@ -3,6 +3,7 @@ import { View, Text , Button, TouchableOpacity,TextInput,StyleSheet} from 'react
 import { AsyncStorage } from 'react-native';
 import uuid from 'uuid';
 import Tarea from '../componentes/Tarea';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class SecondScreen extends Component {
   
@@ -97,6 +98,7 @@ cambiarEstadoTarea = (tarea,index) => {
 ////////////////////////////////////////////////RENDER//////////////////////////////
   render() {    
     return (
+      <ScrollView>
       <View style={styles.container}>
           <View style={styles.header}>
             <Text style={{color:'white', fontSize:35, flex:1, marginBottom:6}}> {this.state.quirofanoClicado.nombre} </Text>
@@ -115,6 +117,7 @@ cambiarEstadoTarea = (tarea,index) => {
           </View>
 
             {!this.state.tareasArray.length ? (<Text>No hay tareas</Text>) : (
+              <ScrollView>
                   <View style={styles.tareas}>     
                       {this.state.tareasArray.map((tarea,index) => tarea.idQuirofano === this.state.quirofanoClicado.id ? (
                           <Tarea 
@@ -130,10 +133,12 @@ cambiarEstadoTarea = (tarea,index) => {
                           )}
                   
                   </View>
+                  </ScrollView>
               )}
 
 
       </View>
+      </ScrollView>
     );
   }
 }
@@ -193,11 +198,11 @@ const styles = StyleSheet.create({
 /////////////////////////////////////////////
 
   tareas:{
-    flex:2,
+    flex:3,
     alignSelf: 'stretch',
     justifyContent:'flex-start',
-    padding:15,
-    backgroundColor:'yellow'
+    padding:10,
+   // backgroundColor:'yellow'
   }
 
  
