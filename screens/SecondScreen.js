@@ -57,7 +57,8 @@ handleSubmit = e => {
   }
   
   this.salvarDatos(tarea)
-  this.setState({tareasArray:[...this.state.tareasArray, tarea]})   
+  this.setState({tareasArray:[...this.state.tareasArray, tarea]})  
+  this.setState({tareaNueva:{nombre:""}}) 
  // alert(JSON.stringify(this.state.tareasArray))
 }
 
@@ -101,7 +102,7 @@ cambiarEstadoTarea = (tarea,index) => {
       <ScrollView>
       <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={{color:'white', fontSize:35, flex:1, marginBottom:6}}> {this.state.quirofanoClicado.nombre} </Text>
+            <Text style={{color:'white', fontSize:35, flex:1, marginBottom:6,fontWeight:'bold'}}> {this.state.quirofanoClicado.nombre} </Text>
             <TouchableOpacity onPress={this.todasIncompletas}><Text style={{marginBottom:12, color:'white'}}> Marcar todas Incompletas</Text></TouchableOpacity>
           </View>
 
@@ -133,7 +134,7 @@ cambiarEstadoTarea = (tarea,index) => {
                           )}
                   
                   </View>
-                  </ScrollView>
+              </ScrollView>
               )}
 
 
@@ -169,7 +170,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent:'space-between',
-    backgroundColor:'white'
+    backgroundColor:'white',
+    marginTop:15,
+    marginRight:5
 
   },
 
@@ -184,25 +187,33 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     textAlign:'center',
     color:'white',
-    fontSize:25,
-    fontStyle:'italic'
+    fontSize:22,
+    fontStyle:'italic',
+    borderWidth:1
 
   },
 
   btnAgregar:{
     flex:1,
-    margin:10,
-    padding:8
+    marginLeft:8,
+    marginRight:8,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent:'center',
+    textAlign:'center',
   },
 
 /////////////////////////////////////////////
 
   tareas:{
-    flex:3,
+    flex:2,
     alignSelf: 'stretch',
+    alignItems:'stretch',
     justifyContent:'flex-start',
     padding:10,
-   // backgroundColor:'yellow'
+    //backgroundColor:'yellow',
+    marginTop:20,
+    width: 400
   }
 
  

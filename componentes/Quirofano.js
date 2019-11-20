@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         marginRight:10,
         borderRadius:30,
         justifyContent:"space-around",
+        borderWidth:0
         
     },
     nombre:{
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
     eliminarQuirofano:{
         flex:.3,
         justifyContent:"flex-end",
-        backgroundColor:"red"
+        backgroundColor:"red",
+        borderWidth:3
     }
 })

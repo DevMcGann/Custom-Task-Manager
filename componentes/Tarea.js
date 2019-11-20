@@ -21,14 +21,14 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
     return (  
 
       
-        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" , flex:1,  justifyContent:'space-between', marginBottom:15, alignItems:'stretch' }}>
+        <View  style={{ backgroundColor:  tarea.completa ? "green" : "red" , flex:1,  justifyContent:'space-between', marginBottom:15, alignSelf: "stretch", borderWidth:2}}>
                 
                 <View style={{flex:.5}}>
-                   <Text style={{textAlign:'center', marginBottom:16, marginTop:8, color:'white', fontWeight:'bold'}}> {tarea.nombre}</Text>
+                   <Text style={{textAlign:'center', marginBottom:16, marginTop:8, color:'white', fontWeight:'bold', alignSelf: "stretch"}}> {tarea.nombre}</Text>
                 </View>
 
 
-                <View style={styles.containerBotones}>    
+                <View style={{flex:.3, flexDirection:'row', alignItems:'flex-end', justifyContent: 'space-evenly', marginBottom:10 }}>    
                     {tarea.completa ? 
                     (<Button title="Completa" onPress={cambiarEstado} style={{marginTop: 15}}/>)
                      : 
@@ -39,8 +39,7 @@ const Tarea = ({tarea,eliminarTarea, cambiarEstadoTarea, index }) => {
                 </View>
                            
         </View>
-    
-
+  
     );
 }
  
@@ -48,16 +47,3 @@ export default Tarea;
 
 
 
-const styles = StyleSheet.create({
-    
-    containerBotones: {
-      flex:.3,
-      flexDirection:'row',
-      alignItems: 'flex-end',
-      //backgroundColor:'orange',
-      justifyContent: 'space-evenly',
-      
-      
-      
-    },
-  });
