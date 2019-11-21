@@ -4,6 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Home from './screens/Home';
 import SecondScreen from './screens/SecondScreen';
+import Opciones from './screens/opciones';
+import Desarrollador from './screens/desarrollador';
+
 
 
 const NavStack = createStackNavigator({
@@ -13,6 +16,12 @@ const NavStack = createStackNavigator({
     SecondScreen: { 
         screen: SecondScreen,
     },
+    opciones: {
+        screen: Opciones,
+    },
+    desarrollador: {
+        screen: Desarrollador,
+    }
 });
 
 const Navegador = createAppContainer(NavStack);

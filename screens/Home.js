@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text,Button, StyleSheet, Image,ScrollView } from 'react-native';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, ImageBackground } from 'react-native';
 import NuevoQuirofano from '../componentes/NuevoQuirofano';
 import ListaQuirofanos from '../componentes/ListaQuirofanos';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Home extends Component {
   
@@ -43,17 +44,6 @@ class Home extends Component {
       }
     }
  
-    removeEverything = async () => {
-     try {
-       await AsyncStorage.removeItem('QUIROFANOS')
-       await AsyncStorage.removeItem('TAREAS')
-       alert("Todo lo almacenado en el AsyncStorage fué eliminado!")
-       this.setState({quirofanos:[]})
-     } catch (e) {
-         console.log(e)
-         alert("Error eliminando datos")
-     }
-    }
 
 
      //callback function que recibe parametro de NuevoQuirofano.js
@@ -90,6 +80,19 @@ quirofanoClicado = clicado => {
  this.setState ( { clicada : clicado })
 }
 
+
+
+removeEverything = async () => {
+  try {
+    await AsyncStorage.removeItem('QUIROFANOS')
+    await AsyncStorage.removeItem('TAREAS')
+    alert("Todo lo almacenado en el AsyncStorage fué eliminado!")
+    this.setState({quirofanos:[]})
+  } catch (e) {
+      console.log(e)
+      alert("Error eliminando datos")
+  }
+ }
 
 //////////////////////////////////////////////////////////CARGAR VALORES PREDETERMINADOS (PASAR A FUNCION O ALGO)/////////////////////////////////////////////////
 cargarPredef = () => {
@@ -477,7 +480,13 @@ let tareas = [
 
 
 
-
+/*
+ <Image source={ require ('../imagenes/xxz.png')} style={{height:180, width:500,  resizeMode: 'cover', flex:3}}/>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', flex:1}}>
+            <Text onPress={this.removeEverything} style={styles.btnBorrarTodo}>Borrar Todo </Text>
+            <Text onPress={this.cargarPredef} style={styles.btnBorrarTodo}>Cargar Predef.</Text>  
+          </View>
+*/ 
 
 
 
@@ -485,10 +494,16 @@ let tareas = [
     return (
       <View style={styles.container}>
       <View style={styles.header}>
-          <Image source={ require ('../imagenes/xxz.png')} style={{height:180, width:500,  resizeMode: 'cover', flex:3}}/>
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', flex:1}}>
-            <Text onPress={this.removeEverything} style={styles.btnBorrarTodo}>Borrar Todo </Text>
-            <Text onPress={this.cargarPredef} style={styles.btnBorrarTodo}>Cargar Predef.</Text>  
+          <ImageBackground 
+            resizeMode={'stretch'} // or cover
+            style={{flex:1, height:250, width: 400}} // must be passed from the parent, the number may vary depending upon your screen size
+            source={require('../imagenes/xxz.png')}
+          />
+          <View>
+            <TouchableOpacity onPress = { () => this.props.navigation.navigate( 'opciones')}>
+              <Image source={require ('../imagenes/opciones_2.png')} style={{padding:10,height:50, width:50, alignSelf:'flex-start', justifyContent:'flex-end', marginBottom: 255, 
+              marginLeft:8}} /> 
+            </TouchableOpacity>
           </View>
          
       </View>
@@ -539,21 +554,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    flex:1.3,
-    marginTop:25,
+    flex:1.6,
+    marginTop:1,
+    marginBottom:10
     //backgroundColor: "blue"
   },
-  btnBorrarTodo:{
-    alignSelf: 'center',
-    flex:.2,
-    justifyContent: 'center',
-    marginTop:5,
-    backgroundColor:"red",
-    padding:5,
-    color:"white" 
-  },
   nuevoQuirofano:{
-    flex:.2,
+    flex:.3,
     backgroundColor:"green",
     alignSelf: 'stretch',
     marginTop:5,

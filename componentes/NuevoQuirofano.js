@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TextInput, TouchableOpacity,Image} from 'react-native';
 import uuid from 'uuid';
 
 class NuevaPersona extends Component {
@@ -28,7 +28,7 @@ class NuevaPersona extends Component {
                 <TextInput type="text" placeholder="Agregar Quirófano" name="nombre" value={this.state.quirofano.nombre}
                  onChangeText={(nombre) => this.handleChange(nombre)} style={styles.input}/>
                 <TouchableOpacity onPress={this.handleSubmit} style={styles.boton} >
-                    <Text style={{fontSize:20}}>+</Text>
+                     <Image source={require ('../imagenes/add_icon.png')} style={{padding:10,height:40, width:90, alignSelf:'center', justifyContent:'flex-end'}}  /> 
                 </TouchableOpacity>  
     
             </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         borderTopWidth:2,
         borderLeftWidth:2,
         borderRightWidth:2,
-        borderColor:"orange",
+        //borderColor:"orange",
         borderRadius:12,
         backgroundColor:"#7FFF00",
         marginRight:5,
