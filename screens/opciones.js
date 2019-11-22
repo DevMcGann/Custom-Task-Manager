@@ -5,15 +5,16 @@ import { AsyncStorage } from 'react-native';
 const Opciones = ({navigation}) => {
 
     const {navigate} = navigation
+   
     
-
    
 
     const removeEverything = async () => {
         try {
           await AsyncStorage.removeItem('QUIROFANOS')
           await AsyncStorage.removeItem('TAREAS')
-            borrarStateQuirofanos()
+          //await AsyncStorage.clear
+            
           alert("Todo lo almacenado en el AsyncStorage fué eliminado!")
         } catch (e) {
             console.log(e)
@@ -378,7 +379,7 @@ const Opciones = ({navigation}) => {
       
        const cargarStorage = async ()  =>{
          try {
-          removeEverything()
+          
           await  AsyncStorage.setItem("QUIROFANOS", JSON.stringify(quirofanos))
           await  AsyncStorage.setItem("TAREAS", JSON.stringify(tareas))
             
