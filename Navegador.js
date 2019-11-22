@@ -18,6 +18,7 @@ const NavStack = createStackNavigator({
     },
     opciones: {
         screen: Opciones,
+        
     },
     desarrollador: {
         screen: Desarrollador,

@@ -5,11 +5,15 @@ import { AsyncStorage } from 'react-native';
 const Opciones = ({navigation}) => {
 
     const {navigate} = navigation
+    
+
+   
 
     const removeEverything = async () => {
         try {
           await AsyncStorage.removeItem('QUIROFANOS')
           await AsyncStorage.removeItem('TAREAS')
+            borrarStateQuirofanos()
           alert("Todo lo almacenado en el AsyncStorage fué eliminado!")
         } catch (e) {
             console.log(e)
@@ -374,16 +378,18 @@ const Opciones = ({navigation}) => {
       
        const cargarStorage = async ()  =>{
          try {
-             removeEverything()
+          removeEverything()
           await  AsyncStorage.setItem("QUIROFANOS", JSON.stringify(quirofanos))
           await  AsyncStorage.setItem("TAREAS", JSON.stringify(tareas))
             
-          alert("Se cargaron los dato predefinidos")
+          alert("Se cargaron los datos predefinidos, reinicia la aplicacion")
+          
          } catch (error) {
            alert("Hubo un error al cargar los datos predefinidos")
          }
        } 
         cargarStorage()
+        
     }
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
@@ -404,6 +410,7 @@ const Opciones = ({navigation}) => {
 
             <View style={{flex:.4}}>
                 <Button title="Sobre el Desarrollador" onPress = { () => navigate( 'desarrollador')}/>
+                <Button title="volver a Home" onPress = { () => navigate( 'Home')}/>
                 <Text style={{textAlign:'center', marginTop:10}}>Información del Desarrollador de la aplicación para contactar en caso de necesitar cambios</Text>
             </View>
         </View>

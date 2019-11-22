@@ -15,6 +15,7 @@ const ListaQuirofanos = ({quirofanos, eliminarQuirofano,quirofanoClicado,elimina
                 quirofanoClicado = {quirofanoClicado}
                 eliminar_Tareas_Relacionadas={eliminar_Tareas_Relacionadas}
                 navigation={navigation}
+                
             />
         ))}
     </React.Fragment>
