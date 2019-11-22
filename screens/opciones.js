@@ -23,6 +23,7 @@ const Opciones = ({navigation}) => {
        }
       
       //////////////////////////////////////////////////////////CARGAR VALORES PREDETERMINADOS (PASAR A FUNCION O ALGO)/////////////////////////////////////////////////
+      ////// Convertirlo en JSON y cargarlo desde archivo asi no queda semejante choclo acá. 
       const cargarPredef = () => {
        
       let quirofanos = [

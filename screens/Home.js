@@ -29,6 +29,7 @@ class Home extends Component {
 
   async componentDidUpdate() {
     try {
+     
       if (this.state.quirofanos.length ) {
         await AsyncStorage.setItem('QUIROFANOS', JSON.stringify(this.state.quirofanos))
         
