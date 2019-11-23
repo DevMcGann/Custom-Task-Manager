@@ -1,11 +1,15 @@
 import React from 'react';
-import {Text, View , TouchableOpacity, Button, Image} from 'react-native';
+import {Text, View , TouchableOpacity, Image, Dimensions} from 'react-native';
+
 
 const Desarrollador = () => {
+
+    const anchoDispositivo = Math.round(Dimensions.get('window').width);
+
     return ( 
         <View style={{flex:1}}>
             <View style={{flex: 1, borderWidth:5}}>
-                <Image source={require ('../imagenes/gsoft.jpg')} style={{height:250, width:400, justifyContent:'center', alignSelf:'center'}} /> 
+                <Image source={require ('../imagenes/gsoft.jpg')} style={{height:350, width:anchoDispositivo, justifyContent:'center', alignSelf:'center'}} /> 
             </View>
 
             <View style={{flex: 1, justifyContent:'center', alignContent:'center', padding:15}}>

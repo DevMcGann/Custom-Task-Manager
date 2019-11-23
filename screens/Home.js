@@ -5,6 +5,8 @@ import NuevoQuirofano from '../componentes/NuevoQuirofano';
 import ListaQuirofanos from '../componentes/ListaQuirofanos';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {NavigationEvents} from 'react-navigation';
+import {Dimensions } from "react-native";
+
 
 class Home extends Component {
   
@@ -17,7 +19,7 @@ class Home extends Component {
   async componentDidMount() {
 
     try {
-     this.didFocusSubscription()
+     //this.didFocusSubscription()
       let datos = await AsyncStorage.getItem('QUIROFANOS')
       if (datos) {
         this.setState({ quirofanos: JSON.parse(datos) })
@@ -29,7 +31,7 @@ class Home extends Component {
 
   async componentDidUpdate() {
     try {
-     
+      
       if (this.state.quirofanos.length ) {
         await AsyncStorage.setItem('QUIROFANOS', JSON.stringify(this.state.quirofanos))
         
@@ -99,6 +101,24 @@ quirofanoClicado = clicado => {
  this.setState ( { clicada : clicado })
 }
 
+/*este método fuerza a actualizar el estado después de haber elegido "cargarPredeterminados" o "EliminarTodo"
+Cada vez que el componente Home carga (willFocus, gracias al componente <NavigationEvent>, chequea que si hay datos en AsyncStorage.
+  Si hay datos, actualiza el state.  Si no hay nada en Asyncstorage, state vacio [].  )   */
+cargarOpciones= async ()=>{
+  try {
+     let datos = await AsyncStorage.getItem('QUIROFANOS')
+     if (datos) {
+       this.setState({ quirofanos: JSON.parse(datos) })
+     }else{
+       await AsyncStorage.removeItem('QUIROFANOS')
+       await AsyncStorage.removeItem('TAREAS')
+       this.setState({quirofanos:[]})
+     }
+
+   } catch (error) {
+     console.log(error)
+   } 
+}
 
 
 
@@ -115,20 +135,27 @@ quirofanoClicado = clicado => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////RENDER/////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////RENDER/////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////RENDER/////////////////////////////////////////////////////////////////////////////////////
-
 
   render() {
+
+    const anchoDispositivo = Math.round(Dimensions.get('window').width);
+
     return (
       <View style={styles.container}>
+
+          <NavigationEvents onWillFocus={ () => this.cargarOpciones() }
+        
+        />
+        
         <View style={styles.header}>
           <ImageBackground
             resizeMode={'stretch'}
-            style={{ flex: 1, height: 250, width: 400 }}
-            source={require('../imagenes/xxz.png')}
+            style={{ flex: 1, height: 250, width: anchoDispositivo }}
+            source={require('../imagenes/logo.jpg')}
           />
           <View>
             <TouchableOpacity  //navegando...
-              onPress={() => this.props.navigation.navigate('opciones', { forzarUpdate: this.forzarUpdate })}
+              onPress={() => this.props.navigation.navigate('opciones')}
             >
               <Image source={require('../imagenes/opciones_2.png')} style={{
                 padding: 10, height: 50, width: 50, alignSelf: 'flex-start', justifyContent: 'flex-end', marginBottom: 255,

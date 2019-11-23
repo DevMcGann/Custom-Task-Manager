@@ -380,11 +380,13 @@ const Opciones = ({navigation}) => {
       
        const cargarStorage = async ()  =>{
          try {
-          
+             //primero limpiamos el storage y despues volvemos a escribirlo con la data predefinida
+          await AsyncStorage.removeItem('QUIROFANOS')
+          await AsyncStorage.removeItem('TAREAS')
           await  AsyncStorage.setItem("QUIROFANOS", JSON.stringify(quirofanos))
           await  AsyncStorage.setItem("TAREAS", JSON.stringify(tareas))
             
-          alert("Se cargaron los datos predefinidos, reinicia la aplicacion")
+          alert("Se cargaron los datos predefinidos")
           
          } catch (error) {
            alert("Hubo un error al cargar los datos predefinidos")
@@ -412,7 +414,6 @@ const Opciones = ({navigation}) => {
 
             <View style={{flex:.4}}>
                 <Button title="Sobre el Desarrollador" onPress = { () => navigate( 'desarrollador')}/>
-                <Button title="volver a Home" onPress = { () => navigate( 'Home')}/>
                 <Text style={{textAlign:'center', marginTop:10}}>Información del Desarrollador de la aplicación para contactar en caso de necesitar cambios</Text>
             </View>
         </View>
